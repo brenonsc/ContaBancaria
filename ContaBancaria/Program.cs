@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using ContaBancaria.Model;
 
 namespace ContaBancaria;
 
@@ -9,6 +10,7 @@ class Program
     static void Main(string[] args)
     {
         int opcao = 0;
+        Conta c1 = new Conta(1, 123, 1, "Gaspar", 1000000.00M);
         
         while(true)
         {
