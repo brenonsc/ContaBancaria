@@ -9,7 +9,7 @@ public class Conta
     private decimal saldo;
 
     //Método Construtor
-    public Conta(int id, int agencia, int tipo, string titular, decimal saldo)
+    public Conta(int numero, int agencia, int tipo, string titular, decimal saldo)
     {
         this.numero = numero;
         this.agencia = agencia;
@@ -18,6 +18,12 @@ public class Conta
         this.saldo = saldo;
     }
     
+    //Polimorfismo de Sobrecarga
+    public Conta()
+    {
+        
+    }
+
     //Métodos Getters e Setters
     public int GetNumero()
     {
@@ -70,7 +76,7 @@ public class Conta
     }
 
     //Métodos
-    public bool Sacar(decimal valor)
+    public virtual bool Sacar(decimal valor)
     {
         if (valor > this.saldo)
         {
@@ -79,17 +85,15 @@ public class Conta
         }
             
         this.SetSaldo(this.saldo - valor);
-        //Console.WriteLine("Saque realizado com sucesso!");
         return true;
     }
     
     public void Depositar(decimal valor)
     {
         this.SetSaldo(this.saldo + valor);
-        //Console.WriteLine("Depósito realizado com sucesso!");
     }
     
-    public void Visualizar()
+    public virtual void Visualizar()
     {
         string tipo = "";
 
@@ -102,14 +106,14 @@ public class Conta
                 tipo = "Conta Poupança";
                 break;
         }
-        
+
         Console.WriteLine("Dados da Conta\n" +
                           "**************************\n" +
-                          "Número da Conta: " + this.numero + 
-                          "\nAgência: " + this.agencia + 
-                          "\nTipo: " + tipo + 
-                          "\nTitular: " + this.titular + 
-                          "\nSaldo: " + (this.saldo).ToString("C") +
-                          "\n**************************");
+                          "Número da Conta: " + this.numero +
+                          "\nAgência: " + this.agencia +
+                          "\nTipo: " + tipo +
+                          "\nTitular: " + this.titular +
+                          "\nSaldo: " + (this.saldo).ToString("C"));
+                          //"\n**************************")
     }
 }
