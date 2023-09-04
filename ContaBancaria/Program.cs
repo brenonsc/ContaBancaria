@@ -10,7 +10,6 @@ class Program
     static void Main(string[] args)
     {
         int opcao = 0;
-        Conta c1 = new Conta(1, 123, 2, "Gaspar", 1000000.00M);
         ContaCorrente cc1 = new ContaCorrente(2, 456, 1, "Breno", 2000, 500);
         ContaPoupanca cp1 = new ContaPoupanca(3, 789, 3, "Samantha", 1000, 10);
         
