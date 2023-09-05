@@ -11,7 +11,16 @@ public class ContaController : IContaRepository
     
     public void ProcurarPorNumero(int numero)
     {
-        throw new NotImplementedException();
+        var conta = BuscarNaCollection(numero);
+
+        if (conta is not null)
+            conta.Visualizar();
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"A conta número {numero} não foi encontrada!");
+            Console.ResetColor();
+        }
     }
 
     public void ListarContas()
@@ -30,12 +39,42 @@ public class ContaController : IContaRepository
 
     public void Atualizar(Conta conta)
     {
-        throw new NotImplementedException();
+        var buscaConta = BuscarNaCollection(conta.GetNumero());
+        
+        if (buscaConta is not null)
+        {
+            var index = listaContas.IndexOf(buscaConta);
+            listaContas[index] = conta;
+            
+            Console.WriteLine($"A conta {conta.GetNumero()} foi atualizada com sucesso!");
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"A conta número {conta.GetNumero()} não foi encontrada!");
+            Console.ResetColor();
+        }
     }
 
     public void Deletar(int numero)
     {
-        throw new NotImplementedException();
+        var conta = BuscarNaCollection(numero);
+
+        if (conta is not null)
+            if(listaContas.Remove(conta))
+                Console.WriteLine($"A conta número {numero} foi removida com sucesso!");
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"A conta número {numero} não foi removida!");
+                Console.ResetColor();
+            }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"A conta número {numero} não foi encontrada!");
+            Console.ResetColor();
+        }
     }
 
     public void Sacar(int numero, decimal valor)
@@ -58,5 +97,19 @@ public class ContaController : IContaRepository
     {
         numero++;
         return numero;
+    }
+    
+    //Método para buscar um objeto Conta na lista de contas pelo número
+    public Conta? BuscarNaCollection(int numero)
+    {
+        foreach (var conta in listaContas)
+        {
+            if (conta.GetNumero() == numero)
+            {
+                return conta;
+            }
+        }
+
+        return null;
     }
 }
