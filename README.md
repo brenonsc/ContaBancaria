@@ -2,7 +2,7 @@
 
 Este é um projeto em C# que implementa um sistema simples de Conta Bancária com operações básicas, como criar, ler, atualizar e excluir contas, bem como realizar saques, depósitos e transferências entre contas.
 
-<br>
+
 
 ## Funcionalidades
 
@@ -22,25 +22,21 @@ O projeto Conta Bancária oferece as seguintes funcionalidades:
 
 7. **Excluir uma conta:** Remova uma conta bancária do sistema, fornecendo o número da conta.
 
-<br>
+
 
 ## Como usar o projeto
 
 1. **Pré-requisitos:**
    - Certifique-se de ter o Visual Studio ou uma IDE compatível com C# instalada em seu computador.
    - Clone ou faça o download deste repositório para sua máquina local.
-
 2. **Compilando e Executando:**
    - Abra o projeto ContaBancaria no Visual Studio.
    - Compile o projeto.
    - Execute o programa.
-
 3. **Utilizando o sistema:**
    - O programa fornecerá um menu interativo no console, onde você pode escolher entre as diferentes opções disponíveis.
-   
-     
 
-<br>
+
 
 ## Contribuições
 
@@ -48,4 +44,4 @@ Contribuições são bem-vindas! Se você quiser melhorar ou expandir este proje
 
 ---
 
-Esperamos que este projeto de Conta Bancária em C# seja útil para você. Se tiver alguma dúvida ou sugestão, não hesite em entrar em contato.
+Espero que este projeto de Conta Bancária em C# seja útil para você. Se tiver alguma dúvida ou sugestão, não hesite em entrar em contato.
