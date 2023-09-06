@@ -1,6 +1,6 @@
 # Conta Bancária - Projeto em C# :moneybag:
 
-Este é um projeto em C# que implementa um sistema simples de Conta Bancária com operações básicas, como criar, ler, atualizar e excluir contas, bem como realizar saques, depósitos e transferências entre contas.
+Este é um projeto em C# que implementa um sistema simples de Conta Bancária com operações básicas, como criar, ler, atualizar e excluir contas, bem como realizar saques, depósitos e transferências entre contas.<br>
 
 ## Funcionalidades
 
@@ -18,7 +18,7 @@ O projeto Conta Bancária oferece as seguintes funcionalidades:
 
 6. **Realizar uma transferência:** Transfira dinheiro de uma conta para outra, fornecendo os números das contas de origem e destino, bem como o valor a ser transferido.
 
-7. **Excluir uma conta:** Remova uma conta bancária do sistema, fornecendo o número da conta.
+7. **Excluir uma conta:** Remova uma conta bancária do sistema, fornecendo o número da conta.<br>
 
 ## Como usar o projeto
 
@@ -32,7 +32,7 @@ O projeto Conta Bancária oferece as seguintes funcionalidades:
    - Execute o programa.
 
 3. **Utilizando o sistema:**
-   - O programa fornecerá um menu interativo no console, onde você pode escolher entre as diferentes opções disponíveis.
+   - O programa fornecerá um menu interativo no console, onde você pode escolher entre as diferentes opções disponíveis.<br>
    
      
 
