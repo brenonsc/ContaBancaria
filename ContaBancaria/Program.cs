@@ -10,31 +10,15 @@ class Program
     
     static void Main(string[] args)
     {
-        int opcao, agencia, tipo, aniversario, numero;
+        int opcao, agencia, tipo, aniversario, numero, numeroDestino;
         string? titular;
-        decimal saldo, limite;
+        decimal saldo, limite, valor;
         
-
         ContaController contas = new();
         ContaCorrente cc1 = new ContaCorrente(contas.GerarNumero(), 456, 1, "Breno", 2000, 500);
         contas.Cadastrar(cc1);
-        ContaPoupanca cp1 = new ContaPoupanca(contas.GerarNumero(), 789, 3, "Samantha", 1000, 10);
+        ContaPoupanca cp1 = new ContaPoupanca(contas.GerarNumero(), 789, 2, "Samantha", 1000, 10);
         contas.Cadastrar(cp1);
-        
-        /*
-        cc1.Visualizar();
-
-        cc1.Sacar(3000);
-        cc1.Sacar(2500);
-        
-        cc1.Visualizar();
-        */
-        
-        cp1.Visualizar();
-        cp1.Depositar(100);
-        cp1.Visualizar();
-        cp1.Sacar(50);
-        cp1.Visualizar();
         
         while(true)
         {
@@ -84,7 +68,7 @@ class Program
             switch (opcao)
             {
                 case 1:
-                    Console.WriteLine("Criar Conta\n\n");
+                    Console.Write("\nCriar Conta\n");
                     Console.ResetColor();
                     
                     Console.Write("Digite o número da agência: ");
@@ -121,28 +105,30 @@ class Program
                             contas.Cadastrar(cp);
                             break;
                     }
-                    
+                    Console.ResetColor();
                     KeyPress();
                     break;
                 case 2:
-                    Console.WriteLine("\n\nListar todas as Contas\n");
+                    Console.Write("\nListar todas as Contas\n");
                     Console.ResetColor();
                     contas.ListarContas();
+                    Console.Write("\n");
                     KeyPress();
                     break;
                 case 3:
-                    Console.WriteLine("\n\nConsultar dados da Conta por número");
+                    Console.Write("\nConsultar dados da Conta por número\n");
+                    Console.ResetColor();
                     Console.Write("Digite o número da conta: ");
                     numero = int.Parse(Console.ReadLine());
-                    
-                    Console.Write("\n");
-                    contas.ProcurarPorNumero(numero);
-                    Console.ResetColor();
 
+                    contas.ProcurarPorNumero(numero);
+                    Console.Write("\n");
+                    
+                    Console.ResetColor();
                     KeyPress();
                     break;
                 case 4:
-                    Console.WriteLine("\n\nAtualizar dados da Conta por número");
+                    Console.Write("\nAtualizar dados da Conta por número\n");
                     Console.ResetColor();
                     
                     Console.Write("Digite o número da conta: ");
@@ -151,7 +137,7 @@ class Program
                     var conta = contas.BuscarNaCollection(numero);
                     if (conta is not null)
                     {
-                        Console.Write("Digite o número da agência: ");
+                        Console.Write("\nDigite o número da agência: ");
                         agencia = int.Parse(Console.ReadLine());
                     
                         Console.Write("Digite o nome do titular: ");
@@ -183,46 +169,82 @@ class Program
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"A conta número {numero} não foi encontrada!");
-                        Console.ResetColor();
+                        Console.WriteLine($"\nA conta número {numero} não foi encontrada!\n");
                     }
+                    Console.ResetColor();
                     KeyPress();
                     break;
                 case 5:
-                    Console.WriteLine("\n\nApagar a Conta por número");
+                    Console.Write("\nApagar a Conta por número\n");
+                    Console.ResetColor();
                     Console.Write("Digite o número da conta: ");
                     numero = int.Parse(Console.ReadLine());
                     
                     Console.Write("\n");
                     contas.Deletar(numero);
-                    
-                    Console.ResetColor();
 
+                    Console.ResetColor();
                     KeyPress();
                     break;
                 case 6:
-                    Console.WriteLine("Saque\n\n");
+                    Console.Write("\nSaque\n");
                     Console.ResetColor();
+                    
+                    Console.Write("Digite o número da conta: ");
+                    numero = int.Parse(Console.ReadLine());
+                    
+                    Console.Write("Digite o valor do saque: ");
+                    valor = decimal.Parse(Console.ReadLine());
+                    
+                    Console.Write("\n");
+                    
+                    contas.Sacar(numero, valor);
 
+                    Console.ResetColor();
                     KeyPress();
                     break;
                 case 7:
-                    Console.WriteLine("Depósito\n\n");
+                    Console.Write("\nDepósito\n");
                     Console.ResetColor();
+                    
+                    Console.Write("Digite o número da conta: ");
+                    numero = int.Parse(Console.ReadLine());
+                    
+                    Console.Write("Digite o valor do depósito: ");
+                    valor = decimal.Parse(Console.ReadLine());
+                    
+                    Console.Write("\n");
+                    
+                    contas.Depositar(numero, valor);
 
+                    Console.ResetColor();
                     KeyPress();
                     break;
                 case 8:
-                    Console.WriteLine("Transferência entre Contas\n\n");
+                    Console.Write("\nTransferência entre Contas\n");
                     Console.ResetColor();
+                    
+                    Console.Write("Digite o número da conta de origem: ");
+                    numero = int.Parse(Console.ReadLine());
+                    
+                    Console.Write("Digite o número da conta de destino: ");
+                    numeroDestino = int.Parse(Console.ReadLine());
+                    
+                    Console.Write("Digite o valor da transferência: ");
+                    valor = decimal.Parse(Console.ReadLine());
+                    
+                    Console.Write("\n");
+                    
+                    contas.Transferir(numero, numeroDestino, valor);
 
+                    Console.ResetColor();
                     KeyPress();
                     break;
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\nOpção Inválida!\n");
                     Console.ResetColor();
-
+                    
                     KeyPress();
                     break;
             }

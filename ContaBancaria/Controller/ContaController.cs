@@ -18,7 +18,7 @@ public class ContaController : IContaRepository
         else
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"A conta número {numero} não foi encontrada!");
+            Console.WriteLine($"\nA conta número {numero} não foi encontrada!");
             Console.ResetColor();
         }
     }
@@ -34,7 +34,8 @@ public class ContaController : IContaRepository
     public void Cadastrar(Conta conta)
     {
         listaContas.Add(conta);
-        Console.WriteLine($"A conta {conta.GetNumero()} foi criada com sucesso!");
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"\nA conta {conta.GetNumero()} foi criada com sucesso!\n");
     }
 
     public void Atualizar(Conta conta)
@@ -46,12 +47,13 @@ public class ContaController : IContaRepository
             var index = listaContas.IndexOf(buscaConta);
             listaContas[index] = conta;
             
-            Console.WriteLine($"A conta {conta.GetNumero()} foi atualizada com sucesso!");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\nA conta {conta.GetNumero()} foi atualizada com sucesso!\n");
         }
         else
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"A conta número {conta.GetNumero()} não foi encontrada!");
+            Console.WriteLine($"\nA conta número {conta.GetNumero()} não foi encontrada!\n");
             Console.ResetColor();
         }
     }
@@ -61,8 +63,11 @@ public class ContaController : IContaRepository
         var conta = BuscarNaCollection(numero);
 
         if (conta is not null)
-            if(listaContas.Remove(conta))
+            if (listaContas.Remove(conta))
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"A conta número {numero} foi removida com sucesso!");
+            }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -79,17 +84,66 @@ public class ContaController : IContaRepository
 
     public void Sacar(int numero, decimal valor)
     {
-        throw new NotImplementedException();
+        var conta = BuscarNaCollection(numero);
+        
+        if (conta is not null)
+        {
+            conta.Sacar(valor);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Saque de {valor.ToString("C")} realizado com sucesso!");
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"A conta número {numero} não foi encontrada!");
+            Console.ResetColor();
+        }
     }
 
     public void Depositar(int numero, decimal valor)
     {
-        throw new NotImplementedException();
+        var conta = BuscarNaCollection(numero);
+        
+        if (conta is not null)
+        {
+            conta.Depositar(valor);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Depósito de {valor.ToString("C")} realizado com sucesso!");
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"A conta número {numero} não foi encontrada!");
+            Console.ResetColor();
+        }
     }
 
     public void Transferir(int numeroOrigem, int numeroDestino, decimal valor)
     {
-        throw new NotImplementedException();
+        var contaOrigem = BuscarNaCollection(numeroOrigem);
+        var contaDestino = BuscarNaCollection(numeroDestino);
+        
+        if (contaOrigem is not null && contaDestino is not null)
+        {
+            if (contaOrigem.Sacar(valor))
+            {
+                contaDestino.Depositar(valor);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Transferência de {valor.ToString("C")} realizado com sucesso!");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Conta de Origem e/ou Conta de destino não foram encontrada!");
+                Console.ResetColor();
+            }
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"A conta número {numeroOrigem} não foi encontrada!");
+            Console.ResetColor();
+        }
     }
     
     //Métodos Auxiliares
