@@ -25,7 +25,7 @@ class Program
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             
-            Console.Write("************************************************************\n\n" +
+            Console.Write("\n************************************************************\n\n" +
                           "\t\t\tMATRIX BANK\n" +
                           "\t\tEntre na Matrix Financeira\n\n" +
                           "************************************************************\n\n" +
@@ -37,7 +37,8 @@ class Program
                           "\t\t6 - Sacar\n" +
                           "\t\t7 - Depositar\n" +
                           "\t\t8 - Transferência entre Contas\n" +
-                          "\t\t9 - Sair\n\n" +
+                          "\t\t9 - Consulta por titular\n" +
+                          "\t\t10 - Sair\n\n" +
                           "************************************************************");
             
             Console.Write("\nDigite a opção desejada: ");
@@ -57,7 +58,7 @@ class Program
                 continue;
             }
 
-            if (opcao == 9)
+            if (opcao == 10)
             {
                 Console.WriteLine("\nMATRIX BANK - Descubra o banco da nova realidade!");
                 Sobre();
@@ -240,6 +241,17 @@ class Program
                     Console.ResetColor();
                     KeyPress();
                     break;
+                
+                case 9:
+                    Console.Write("\nConsultar Conta por titular\n");
+                    Console.ResetColor();
+                    
+                    Console.Write("Digite o nome do titular: ");
+                    titular = Console.ReadLine();
+                    
+                    contas.ListarContasPorTitular(titular);
+                    break;
+                
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\nOpção Inválida!\n");

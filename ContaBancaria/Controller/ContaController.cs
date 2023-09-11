@@ -166,4 +166,15 @@ public class ContaController : IContaRepository
 
         return null;
     }
+
+    public void ListarContasPorTitular(string titular)
+    {
+        //var contasPorTitular = listaContas.Where(conta => conta.GetTitular() == titular);
+        
+        var contasPorTitular = from conta in listaContas
+            where conta.GetTitular().ToUpper().Contains(titular.ToUpper())
+            select conta;
+        
+        contasPorTitular.ToList().ForEach(c => c.Visualizar());
+    }
 }

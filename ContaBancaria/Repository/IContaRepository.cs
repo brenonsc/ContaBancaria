@@ -10,6 +10,7 @@ public interface IContaRepository
     public void Cadastrar(Conta conta);
     public void Atualizar(Conta conta);
     public void Deletar(int numero);
+    public void ListarContasPorTitular(string titular);
     
     //Métodos de Operação Bancária
     public void Sacar(int numero, decimal valor);
